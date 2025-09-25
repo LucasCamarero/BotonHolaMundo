@@ -29,6 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            // theme
             BotonHolaMundoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     ventanaHola(Modifier.padding(innerPadding))
