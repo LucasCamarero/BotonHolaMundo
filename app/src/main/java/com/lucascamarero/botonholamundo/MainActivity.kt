@@ -9,8 +9,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,7 +41,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ventanaHola(modifier: Modifier = Modifier) {
-    var buttonText by remember { mutableStateOf("OK") }
+    var pruebaField by remember { mutableStateOf("0") }
 
     Column(
         modifier = modifier
@@ -48,17 +50,24 @@ fun ventanaHola(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Text(text = "Pulsa el botón")
-        Button(onClick = { buttonText = action(buttonText) }) {
-            Text(buttonText)
+        OutlinedTextField(
+            value = pruebaField,
+            onValueChange = { newText -> pruebaField = newText },
+            label = { Text("Introduce un número") },
+            placeholder = { Text("ej") },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Text(text = "Comprueba si es un número primo")
+        Button(onClick = { action(pruebaField) }) {
+            // Contenido del boton
+            Text("Comprobar")
         }
+        Text(text = pruebaField)
     }
 }
 
-fun action(variable: String): String {
-    if (variable == "OK") {
-        return "HOLA MUNDO"
-    } else {
-        return "OK"
-    }
+fun action(numero: String) {
+
 }
